@@ -1,0 +1,13 @@
+.contenitore {
+  background-color: rebeccapurple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.button{
+margin: 50px;
+}
