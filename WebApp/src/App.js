@@ -21,6 +21,9 @@ const App = () => {
         <Route
           path="/classifica" element={<Classifica />}>
         </Route>
+        <Route
+          path="/partita" element={<Partita />}>
+        </Route>
       </Routes>
     </BrowserRouter>
 	);

@@ -1,16 +1,17 @@
 import React from "react";
+import "./style_classifica.css";
 import {BtnTornaIndietro} from "../componenti/buttons/button";
 
 export const Classifica = () => {
   return(
-    <div className="contenitore">
-       <div className="row">
-        <div className="titolo">
-          classifica
+    <div className="contenitore_class">
+       <div className="row_class">
+        <div className="titolo_class">
+          Classifica
         </div>
       </div>
-      <div className="row">
-        <div className="button">
+      <div className="row_class">
+        <div className="button_class">
           <BtnTornaIndietro/>
         </div>
       </div>

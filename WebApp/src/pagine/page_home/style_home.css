@@ -1,11 +1,16 @@
-.contenitore {
+@font-face {
+	font-family: "0AB 30";
+	src: url("../font/04B_30__.TTF");
+}
+
+.contenitore_home {
   background-color: rebeccapurple;
   position: absolute;
   height: 100%;
   width: 100%;
 }
 
-.row{
+.row_home{
   display: inline;
   display: flex;
   justify-content: center;
@@ -13,22 +18,15 @@
   height: 50%;
 }
 
-.titolo{
+.titolo_home{
   display: flex;
+  font-family: "0AB 30";
+  font-size: 100px;
+  font-weight: bold;
+  text-shadow: 2px 2px white;
 }
 
-.button{
+.button_home{
   margin: 50px;
   display: flex;
-}
-
-@media (max-width: 576px){
-  .titolo{
-    scale: 0.5;
-  }
-
-  .button{
-    scale: 0.5;
-    margin: 25px;
-  }
 }
