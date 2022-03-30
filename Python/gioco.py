@@ -1,5 +1,5 @@
-import pygame
-
+import pygame, sys
+import impostazioni
 pygame.init()
 
 ### carico immagini ##############################################
@@ -139,7 +139,7 @@ class Button():
 		if muose_x >= self.cordX and muose_x <= (self.cordX + self.width) and mouose_y >= self.cordY and mouose_y <= (self.cordY + self.height):
 			print("Click " + pagina)
 			if pagina == "impostazioni":
-				pass
+				impostazioni.main_impostazioni()
 			elif pagina == "gioca":
 				pass
 			elif pagina == "classifica":
@@ -160,7 +160,8 @@ while True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			pygame.quit()
-		
+			sys.exit()
+
 		#ottengo cordiante mouse
 		cordMouse_x, cordMouse_y = pygame.mouse.get_pos()
 		
