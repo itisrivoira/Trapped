@@ -6,6 +6,7 @@ img_btn_acceso_on = pygame.image.load('./IMMAGINI/BUTTON/img_acceso_on.png')
 img_btn_spento = pygame.image.load('./IMMAGINI/BUTTON/img_spento.png')
 img_btn_spento_on = pygame.image.load('./IMMAGINI/BUTTON/img_spento_on.png')
 img_btn_tornaIndietro = pygame.image.load('./IMMAGINI/BUTTON//img_tornaIndietro.png')
+img_icon = pygame.image.load('./IMMAGINI/ICON/icon.png')
 
 ### carico suoni ##############################################
 pygame.mixer.music.load('./sound/sound.ogg')
@@ -13,6 +14,7 @@ pygame.mixer.music.load('./sound/sound.ogg')
 ### settaggi #####################################################
 SCHERMO = pygame.display.set_mode((800,600))
 pygame.display.set_caption("Trapped")
+pygame.display.set_icon(img_icon)
 FPS = 60
 
 ### classi #######################################################
@@ -150,8 +152,8 @@ class Button():
 			elif pagina == "musica spenta":
 				pygame.mixer.music.stop()
 			elif pagina == "torna indietro":
-				pass
-			 
+				return False
+			
 ##################################################################
 
 def aggiorna():
@@ -171,7 +173,8 @@ def disegna():
 
 def main_impostazioni():
 	SCHERMO.fill((0,0,0))
-	while True:
+	running_impostazioni = True
+	while running_impostazioni:
 		btn_musica_acceso = Button(img_btn_acceso, 450, 200)
 		btn_musica_spento = Button(img_btn_spento, 550, 200)
 		btn_suoni_acceso = Button(img_btn_acceso, 450, 350)
@@ -183,7 +186,7 @@ def main_impostazioni():
 				pygame.quit()
 				sys.exit()
 			
-			#ottengo cordiante mouse
+			#ottengo coordinate mouse
 			cordMouse_x, cordMouse_y = pygame.mouse.get_pos()
 			#sleep(1)
 			#verifico se passo sopra ad un button
@@ -191,7 +194,11 @@ def main_impostazioni():
 			btn_musica_spento.on_button(cordMouse_x, cordMouse_y, img_btn_spento, img_btn_spento_on)
 			btn_suoni_acceso.on_button(cordMouse_x, cordMouse_y, img_btn_acceso, img_btn_acceso_on)
 			btn_suoni_spento.on_button(cordMouse_x, cordMouse_y, img_btn_spento, img_btn_spento_on)
-			
+			#con esc chiude tutto
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_ESCAPE:
+					pygame.quit()
+					sys.exit()
 			#verifico se clicco un button
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				cordMClick_x, cordMClick_y = pygame.mouse.get_pos()
@@ -199,7 +206,7 @@ def main_impostazioni():
 				btn_musica_spento.pressed_button(cordMClick_x, cordMClick_y, "musica spenta")
 				btn_suoni_acceso.pressed_button(cordMClick_x, cordMClick_y, "suoni accesi")
 				btn_suoni_spento.pressed_button(cordMClick_x, cordMClick_y, "suoni spenti")
-				btn_tornaIndietro.pressed_button(cordMClick_x, cordMClick_y, "torna indietro")
+				running_impostazioni = btn_tornaIndietro.pressed_button(cordMClick_x, cordMClick_y, "torna indietro")
 		aggiorna()
 
 if __name__ == "__main__":

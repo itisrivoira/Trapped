@@ -1,8 +1,11 @@
-from curses import KEY_DOWN
 import pygame, sys
 pygame.init()
 ### carico immagini ##############################################
-
+img_btn_acceso = pygame.image.load('./IMMAGINI/BUTTON/img_acceso.png')
+img_btn_acceso_on = pygame.image.load('./IMMAGINI/BUTTON/img_acceso_on.png')
+img_btn_spento = pygame.image.load('./IMMAGINI/BUTTON/img_spento.png')
+img_btn_spento_on = pygame.image.load('./IMMAGINI/BUTTON/img_spento_on.png')
+img_btn_tornaIndietro = pygame.image.load('./IMMAGINI/BUTTON//img_tornaIndietro.png')
 img_icon = pygame.image.load('./IMMAGINI/ICON/icon.png')
 
 ### carico suoni ##############################################
@@ -132,6 +135,19 @@ class Button():
 	
 	def disegna(self):
 		SCHERMO.blit(self.immagine, (self.cordX, self.cordY))
+	
+	def on_button(self, mouse_x, mouse_y, img, img_on):		
+		if mouse_x >= self.cordX and mouse_x <= (self.cordX + self.width) and mouse_y >= self.cordY and mouse_y <= (self.cordY + self.height):
+			self.setImmagine(img_on)
+			self.disegna()
+		else:
+			self.setImmagine(img)
+			self.disegna()
+	def pressed_button(self, mouse_x, mouse_y, pagina):
+		if mouse_x >= self.cordX and mouse_x <= (self.cordX + self.width) and mouse_y >= self.cordY and mouse_y <= (self.cordY + self.height):
+			print("Click " + pagina)
+			if pagina == "torna indietro":
+				return False
 
 ##################################################################
 
@@ -141,11 +157,18 @@ def aggiorna():
 
 def disegna():
 	### carico immagini ###
-    pass
-def main_gioco():
+	img_btn_acceso = pygame.image.load('./IMMAGINI/BUTTON/img_acceso.png')
+	img_btn_acceso_on = pygame.image.load('./IMMAGINI/BUTTON/img_acceso_on.png')
+	img_btn_spento = pygame.image.load('./IMMAGINI/BUTTON/img_spento.png')
+	img_btn_spento_on = pygame.image.load('./IMMAGINI/BUTTON/img_spento_on.png')
+	img_btn_tornaIndietro = pygame.image.load('./IMMAGINI/BUTTON//img_tornaIndietro.png')
+	titolo = Testo("./font/Retro Gaming.ttf", 70, "Classifica", (255, 255, 255), 0, 50, "centro")
+
+def main_classifica():
 	SCHERMO.fill((0,0,0))
-	running_game = True
-	while running_game:
+	running_classifica = True
+	while running_classifica:
+		btn_tornaIndietro = Button(img_btn_tornaIndietro, 50, 500)
 		disegna()
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -153,14 +176,16 @@ def main_gioco():
 				sys.exit()	
 			#ottengo coordinate mouse
 			cordMouse_x, cordMouse_y = pygame.mouse.get_pos()
-			#verifico se clicco un button
+			#con esc chiude tutto
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_ESCAPE:
 					pygame.quit()
 					sys.exit()
+			#verifico se clicco un button
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				cordMClick_x, cordMClick_y = pygame.mouse.get_pos()
+				running_classifica = btn_tornaIndietro.pressed_button(cordMClick_x, cordMClick_y, "torna indietro")
 		aggiorna()
 
 if __name__ == "__main__":
-	main_gioco()	
+	main_classifica()	
