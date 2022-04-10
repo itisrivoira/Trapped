@@ -3,50 +3,13 @@ body{
   padding: 0;
 }
 
-.navbar{
- background-color: #200C64;
-}
-
-.centroNavb{
-  width: 70%;
-  justify-content: center;
-}
-
-.destraNavb{
-  justify-content: end;
-}
-
-.navbar-brand{
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-.iconaMenu{
-  color: white;
-}
-
-.nav-link{
-  height: 50px;
-}
-
-.lingua{
-  color: white;
+.principale{
   background-color: #200C64;
-  border: solid #200C64 2px;
-}
-
-.lingua:hover{
-  transition: 0.1s;
-  color: #200C64;
-  background-color: white;
-  border: solid white 2px;
-  border-radius: 100%;
 
 }
 
-.linknb, .singin, .login, .play{
+
+.linknb, .login{
   color: white;
   font-size: 17px;
   font-weight: bold;
@@ -58,74 +21,16 @@ body{
   border-bottom: solid white 2px;
 }
 
-.singin, .login{
+.login{
   border: solid #200C64;
   border: solid #200C64 2px;
   background-color: #200C64;
 }
 
-.singin:hover, .login:hover{
+.login:hover{
   transition: 0.4s;
   border: solid white 2px;
   border-radius: 15px;
-}
-
-.play{
-  border: solid white 2px;
-  border-radius: 15px;
-  background-color: #200C64;
-}
-
-.play:hover{
-  transition: 0.4s;
-  color: #200C64;
-  background-color: white;
-  border-bottom: solid white 2px;
-}
-
-.caroselTit{
-  display: flex;
-  justify-content: center;
-  background-color: #191919;
-  max-height: 350px;
-}
-
-.titolo{
- max-width: 600px;
- position: absolute;
- top: 100px;
- right: 0;
- z-index: 10;
-}
-
-.buttonDownload{
-  max-width: 600px;
-  position: absolute;
-  top: 250px;
-  right: 0;
-  z-index: 10;
-}
-
-.download{
-  width: 17%;
-  border: solid white 5px;
-  border-radius: 30px;
-  font-weight: bold;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 30px;
-  color: white;
-  background-color: #200C64;
-}
-
-.download:hover{
-  transition: 0.5s;
-  border: solid white 5px;
-  border-radius: 30px;
-  font-weight: bold;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 30px;
-  color: #200C64;
-  background-color: white;
 }
 
 .ondac{
@@ -169,6 +74,86 @@ body{
 
 .card-title{
   font-family: 'Bungee';
+}
+
+.noi{
+  display: flex;
+  margin-top: 7%;
+  margin-bottom: 7%;
+}
+
+.carte{
+  margin-left: 2%;
+}
+
+.card-img-top-noi{
+  height: 50%;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: white;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+#imgpersonaggi1{
+  transform: scale(2.5); 
+}
+
+.testo{
+  font-family: Arial;
+  font-size: 20px;
+  color: white;
+  width: 60%;
+  justify-content: center;
+  margin-left:20%;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+#titolostoria{
+  justify-content: center;
+  margin-left:40%;
+  margin-bottom: 5%;
 }
 
 .logoDenina{
