@@ -7,7 +7,7 @@ img_btn_tornaIndietro = pygame.image.load('./IMMAGINI/BUTTON//img_tornaIndietro.
 img_icon = pygame.image.load('./IMMAGINI/ICON/icon.png')
 
 ### settaggi #####################################################
-SCHERMO = pygame.display.set_mode((800,600))
+SCHERMO = pygame.display.set_mode((600,600))
 FPS = 60
 
 ### programma ####################################################

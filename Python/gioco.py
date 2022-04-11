@@ -3,20 +3,20 @@ import classi
 pygame.init()
 
 ### carico immagini ##############################################
-img_btn_tornaIndietro = pygame.image.load('./IMMAGINI/BUTTON//img_tornaIndietro.png')
+img_btn_tornaIndietro = pygame.image.load('./IMMAGINI/BUTTON/img_tornaIndietro.png')
 img_icon = pygame.image.load('./IMMAGINI/ICON/icon.png')
 
 ### carico suoni ##############################################
 pygame.mixer.music.load('./sound/sound.ogg')
 
 ### settaggi #####################################################
-SCHERMO = pygame.display.set_mode((800,600))
+SCHERMO = pygame.display.set_mode((600,600))
 pygame.display.set_caption("Trapped")
 pygame.display.set_icon(img_icon)
 FPS = 60
 
 ### programma ####################################################
-txt_sceG = classi.Testo("./font/Retro Gaming.ttf", 70, "Scegli personaggio", (255, 255, 255), 0, 50)
+txt_sceG = classi.Testo("./font/Retro Gaming.ttf", 60, "Scegli personaggio", (255, 255, 255), 0, 50)
 btn_tornaIndietro2 = classi.Button(img_btn_tornaIndietro, 50, 500)
 
 def aggiorna():

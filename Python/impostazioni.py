@@ -7,27 +7,27 @@ img_btn_acceso = pygame.image.load('./IMMAGINI/BUTTON/img_acceso.png')
 img_btn_acceso_on = pygame.image.load('./IMMAGINI/BUTTON/img_acceso_on.png')
 img_btn_spento = pygame.image.load('./IMMAGINI/BUTTON/img_spento.png')
 img_btn_spento_on = pygame.image.load('./IMMAGINI/BUTTON/img_spento_on.png')
-img_btn_tornaIndietro = pygame.image.load('./IMMAGINI/BUTTON//img_tornaIndietro.png')
+img_btn_tornaIndietro = pygame.image.load('./IMMAGINI/BUTTON/img_tornaIndietro.png')
 img_icon = pygame.image.load('./IMMAGINI/ICON/icon.png')
 
 ### carico suoni ##############################################
 musica = pygame.mixer.Sound('./sound/sound.ogg')
 
 ### settaggi #####################################################
-SCHERMO = pygame.display.set_mode((800,600))
+SCHERMO = pygame.display.set_mode((600,600))
 pygame.display.set_caption("Trapped")
 pygame.display.set_icon(img_icon)
 FPS = 60
 
 ### programma ####################################################
-txt_impo = classi.Testo("./font/Retro Gaming.ttf", 70, "Impostazioni", (255, 255, 255), 0, 50)
-txt_musica = classi.Testo("./font/Retro Gaming.ttf", 40, "Musica", (255, 255, 255), 0, 200)
-txt_suoni = classi.Testo("./font/Retro Gaming.ttf", 40, "Suoni", (255, 255, 255), 0, 350)
-btn_musica_acceso = classi.Button(img_btn_acceso, 350, 200)
-btn_musica_spento = classi.Button(img_btn_spento_on, 450, 200)
-btn_suoni_acceso = classi.Button(img_btn_acceso, 350, 350)
-btn_suoni_spento = classi.Button(img_btn_spento_on, 450, 350)
-btn_tornaIndietro = classi.Button(img_btn_tornaIndietro, 50, 500)
+txt_impo = classi.Testo("./font/Retro Gaming.ttf", 60, "Impostazioni", (255, 255, 255), 100, 50)
+txt_musica = classi.Testo("./font/Retro Gaming.ttf", 40, "Musica", (255, 255, 255), 50, 200)
+txt_suoni = classi.Testo("./font/Retro Gaming.ttf", 40, "Suoni", (255, 255, 255), 50, 350)
+btn_musica_acceso = classi.Button(img_btn_acceso, 400, 200)
+btn_musica_spento = classi.Button(img_btn_spento_on, 500, 200)
+btn_suoni_acceso = classi.Button(img_btn_acceso, 400, 350)
+btn_suoni_spento = classi.Button(img_btn_spento_on, 500, 350)
+btn_tornaIndietro = classi.Button(img_btn_tornaIndietro, 100, 500)
 
 def aggiorna():
 	pygame.display.update()

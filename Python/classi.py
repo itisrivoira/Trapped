@@ -120,3 +120,41 @@ class Immagini():
 	
   def getCord_y(self):
     return self.cordY
+
+class Personaggio():
+  def __init__(self, img = "", punto_x = 0, punto_y = 0):
+    self.setImmagine(img)
+    self.setCord_x(punto_x)
+    self.setCord_y(punto_y)
+    self.setWidth()
+    self.setHeight()
+
+  def setImmagine(self, i):
+    self.immagine = i
+	
+  def getImmagine(self):
+    return self.immagine
+	
+  def setCord_x(self, x):
+    self.cordX = x
+	
+  def getCord_x(self):
+    return self.cordX
+	
+  def setCord_y(self, y):
+    self.cordY = y
+	
+  def getCord_y(self):
+    return self.cordY
+	
+  def setWidth(self):
+    self.width = self.immagine.get_width()
+	
+  def getWidth(self):
+    return self.width
+		
+  def setHeight(self):
+    self.height = self.immagine.get_height()
+	
+  def getHeight(self):
+    return self.height
