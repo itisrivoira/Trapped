@@ -122,12 +122,19 @@ class Immagini():
     return self.cordY
 
 class Personaggio():
-  def __init__(self, img = "", punto_x = 0, punto_y = 0):
+  def __init__(self, img = "", punto_x = 0, punto_y = 0, vx = 0, vy = 0):
     self.setImmagine(img)
     self.setCord_x(punto_x)
     self.setCord_y(punto_y)
     self.setWidth()
     self.setHeight()
+    self.setVelX(vx)
+    self.setVelY(vy)
+    self.left_pressed = False
+    self.right_pressed = False
+    self.up_pressed = False
+    self.down_pressed = False
+    self.speed = 4
 
   def setImmagine(self, i):
     self.immagine = i
@@ -158,3 +165,30 @@ class Personaggio():
 	
   def getHeight(self):
     return self.height
+  
+  def setVelX(self, Vx):
+    self.__velX = Vx
+  
+  def getVelX(self):
+    return self.__velX
+
+  def setVelY(self, Vy):
+    self.__velY = Vy
+  
+  def getVelY(self):
+    return self.__velY
+
+  def aggiorna(self):
+    self.setVelX(0)
+    self.setVelY(0)
+    if self.left_pressed and not self.right_pressed:
+      self.setVelX = -self.speed
+    if self.right_pressed and not self.left_pressed:
+      self.setVelX = self.speed
+    if self.up_pressed and not self.down_pressed:
+      self.setVelY = -self.speed
+    if self.down_pressed and not self.up_pressed:
+      self.setVelY = self.speed
+      
+    self.setCord_x(self.getCord_x()) += self.getVelX()
+    self.setCord_y(self.getCord_y()) += self.getVelY()

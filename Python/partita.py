@@ -12,25 +12,25 @@ pygame.display.set_icon(img_icon)
 FPS = 60
 
 ### carico immagini ##############################################
-img_classe = pygame.image.load('./IMMAGINI/STANZE/classe.png').convert()
+img_classe = pygame.image.load('./IMMAGINI/MAPPA/classe.png').convert()
 img_classe = pygame.transform.scale(img_classe, ( img_classe.get_width()*MUL, img_classe.get_height()*MUL ))
 
-img_u_1 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_davanti_1.png')
-img_u_2 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_davanti_2.png')
-img_u_3 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_davanti_3.png')
-img_u_4 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_destra_1.png')
-img_u_5 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_destra_2.png')
-img_u_6 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_destra_2.png')
-img_u_7 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_dietro_1.png')
-img_u_8 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_dietro_2.png')
-img_u_9 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_dietro_3.png')
-img_u_10 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_sinistra_1.png')
-img_u_11 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_sinistra_2.png')
-img_u_12 = pygame.image.load('./IMMAGINI/PERSONAGGI/uomo/uomo_sinistra_3.png')
+img_u_1 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_davanti_1.png')
+img_u_2 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_davanti_2.png')
+img_u_3 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_davanti_3.png')
+img_u_4 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_destra_1.png')
+img_u_5 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_destra_2.png')
+img_u_6 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_destra_2.png')
+img_u_7 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_dietro_1.png')
+img_u_8 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_dietro_2.png')
+img_u_9 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_dietro_3.png')
+img_u_10 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_sinistra_1.png')
+img_u_11 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_sinistra_2.png')
+img_u_12 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_sinistra_3.png')
 
 ### programma ####################################################
 stanza = classi.Immagini(img_classe, 0, 0)
-per = classi.Personaggio(img_u_1, 50, 400)
+per = classi.Personaggio(img_u_1, 50, 400, 0, 0)
 
 
 def inizializza():
@@ -60,19 +60,26 @@ def main_partita():
         if event.key == pygame.K_ESCAPE:
           pygame.quit()
           sys.exit()
-        if event.key == pygame.K_UP:	#KEYDOWN -> tasto premuto, key == pygame.K_UP -> freccia su
-          global persy 
-          persy = persy-10 #sale
-        if event.key == pygame.K_DOWN:
-          persy = persy+10 #scende
         if event.key == pygame.K_LEFT:
-          global persx
-          persx = persx-10 #sinistra
+          classi.Personaggio.left_pressed = True
         if event.key == pygame.K_RIGHT:
-          persx = persx+10 #destra
-      #ottengo coordinate mouse
-      #cordMouse_x, cordMouse_y = pygame.mouse.get_pos()
+          classi.Personaggio.right_pressed = True
+        if event.key == pygame.K_UP:
+          classi.Personaggio.up_pressed = True
+        if event.key == pygame.K_DOWN:
+          classi.Personaggio.down_pressed = True
+      if event.type == pygame.KEYUP:
+        if event.key == pygame.K_LEFT:
+          classi.Personaggio.left_pressed = False
+        if event.key == pygame.K_RIGHT:
+          classi.Personaggio.right_pressed = False
+        if event.key == pygame.K_UP:
+          classi.Personaggio.up_pressed = False
+        if event.key == pygame.K_DOWN:
+          classi.Personaggio.down_pressed = False
+    per.aggiorna()
     aggiorna()
+    clock.tick(120)
 
 main_partita()
 

@@ -6,8 +6,8 @@ pygame.init()
 MUL = 1.50
 
 ### carico immagini ##############################################
-img_intro = pygame.image.load('./IMMAGINI/INTRO/prova.png').convert()
-img_intro = pygame.transform.scale(img_intro, ( img_intro.get_width()*MUL, img_intro.get_height()*MUL ))
+img_intro = pygame.image.load('./IMMAGINI/INTRO/home.png').convert()
+#img_intro = pygame.transform.scale(img_intro, ( img_intro.get_width()*MUL, img_intro.get_height()*MUL ))
 img_btn_gioca = pygame.image.load('./IMMAGINI/BUTTON/img_gioca.png')
 img_btn_gioca_on = pygame.image.load('./IMMAGINI/BUTTON/img_gioca_on.png')
 img_btn_impos = pygame.image.load('./IMMAGINI/BUTTON/img_impostazioni.png')
@@ -23,7 +23,7 @@ pygame.display.set_icon(img_icon)
 FPS = 60
 
 ### programma ####################################################
-img_sfondo = classi.Immagini(img_intro, 320, 320)
+img_sfondo = classi.Immagini(img_intro, 0, 0)
 txt_tit = classi.Testo("./font/04B_30__.TTF", 90, "Trapped", (255, 255, 255), 150, 150)
 btn_impos = classi.Button(img_btn_impos, 350, 450)
 btn_gioca = classi.Button(img_btn_gioca, 325, 380)
