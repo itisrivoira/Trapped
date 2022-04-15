@@ -78,8 +78,8 @@ def main_partita():
         if event.key == pygame.K_DOWN:
           classi.Personaggio.down_pressed = False
     per.aggiorna()
-    aggiorna()
-    clock.tick(120)
+    #aggiorna()
+    pygame.time.Clock().tick(120)
 
 main_partita()
 

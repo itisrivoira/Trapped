@@ -20,9 +20,9 @@ pygame.display.set_icon(img_icon)
 FPS = 60
 
 ### programma ####################################################
-txt_impo = classi.Testo("./font/Retro Gaming.ttf", 60, "Impostazioni", (255, 255, 255), 100, 50)
-txt_musica = classi.Testo("./font/Retro Gaming.ttf", 40, "Musica", (255, 255, 255), 50, 200)
-txt_suoni = classi.Testo("./font/Retro Gaming.ttf", 40, "Suoni", (255, 255, 255), 50, 350)
+txt_impo = classi.Testo("./font/Retro Gaming.ttf", 60, "Impostazioni", (255, 255, 255), 150, 50)
+txt_musica = classi.Testo("./font/Retro Gaming.ttf", 40, "Musica", (255, 255, 255), 125, 200)
+txt_suoni = classi.Testo("./font/Retro Gaming.ttf", 40, "Suoni", (255, 255, 255), 125, 350)
 btn_musica_acceso = classi.Button(img_btn_acceso, 400, 200)
 btn_musica_spento = classi.Button(img_btn_spento_on, 500, 200)
 btn_suoni_acceso = classi.Button(img_btn_acceso, 400, 350)
@@ -67,10 +67,11 @@ def main_impostazioni():
 
       #verifico se clicco un button
       if event.type == pygame.MOUSEBUTTONDOWN:
-
+        f=False
         stato_bntMusOn = btn_musica_acceso.pressed_button(cordMouse_x, cordMouse_y)
-        if stato_bntMusOn == True:
+        if stato_bntMusOn == True  and f == False:
           musica.play()
+          f=True
           btn_musica_acceso.setImmagine(img_btn_acceso_on)
           btn_musica_spento.setImmagine(img_btn_spento)
 
@@ -81,7 +82,7 @@ def main_impostazioni():
           btn_musica_spento.setImmagine(img_btn_spento_on)
         
         #da finire mettere suoni per quando premi i tasti
-        #bug da correggiere se clicco sulsante già acceso
+        #bug da correggiere se clicco pulsante già acceso
         stato_btnSonOn = btn_suoni_acceso.pressed_button(cordMouse_x, cordMouse_y)
         if stato_btnSonOn == True:
           btn_suoni_acceso.setImmagine(img_btn_acceso_on)

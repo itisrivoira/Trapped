@@ -190,5 +190,5 @@ class Personaggio():
     if self.down_pressed and not self.up_pressed:
       self.setVelY = self.speed
       
-    self.setCord_x(self.getCord_x()) += self.getVelX()
-    self.setCord_y(self.getCord_y()) += self.getVelY()
+    self.setCord_x(self.getCord_x()+self.getVelX())
+    self.setCord_y(self.getCord_y() +self.getVelY())
