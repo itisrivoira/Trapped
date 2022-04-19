@@ -1,0 +1,54 @@
+@font-face {
+	font-family: "0AB 30";
+	src: url("../font/04B_30__.TTF");
+}
+
+.contenitore_home {
+  background-image: url(../img/home.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #020107;
+}
+
+.row_home{
+  display: inline;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100%;
+}
+
+.col_home{
+  width: 50%;
+  text-align: center;
+}
+
+.titolo_home{
+  font-family: "0AB 30";
+  color: white;
+  font-size: 100px;
+  font-weight: bold;
+}
+
+.button_sopra{
+  margin-top: 10%;
+  margin-bottom: 20px;
+}
+
+.button_sotto{
+  width: 100%;
+}
+
+.button_in1{
+  display: inline-block;
+  margin-right: 25px;
+}
+
+.button_in2{
+  display: inline-block;
+  margin-left: 25px;
+}
