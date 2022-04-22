@@ -1,6 +1,5 @@
 import pygame, sys
 import classi
-#from gioco import per
 pygame.init()
 
 MUL = 1.50
@@ -29,6 +28,16 @@ img_u_9 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_dietro_3.png')
 img_u_10 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_sinistra_1.png')
 img_u_11 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_sinistra_2.png')
 img_u_12 = pygame.image.load('./IMMAGINI/PERSONAGGI/UOMO/uomo_sinistra_3.png')
+img_d_1 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_davanti_1.png')
+img_d_2 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_davanti_2.png')
+img_d_4 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_destra_1.png')
+img_d_5 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_destra_2.png')
+img_d_6 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_destra_3.png')
+img_d_7 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_dietro_1.png')
+img_d_8 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_dietro_2.png')
+img_d_10 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_sinistra_1.png')
+img_d_11 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_sinistra_2.png')
+img_d_12 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_sinistra_3.png')
 
 ### programma ####################################################
 stanza = classi.Immagini(img_classe, 0, 0)
@@ -61,28 +70,25 @@ def main_partita():
         if event.key == pygame.K_a:
           statoCol1 = per.collidStanza(SCHERMO.get_width(), SCHERMO.get_height())
           if statoCol1 == True:
-            SCHERMO.fill((0,0,0))
             per.setImmagine(img_u_10)
             per.setCord_x( per.getCord_x()-vel )
 
         if event.key == pygame.K_d:
           statoCol2 = per.collidStanza(SCHERMO.get_width(), SCHERMO.get_height())
           if statoCol2 == True:
-            SCHERMO.fill((0,0,0))
             per.setImmagine(img_u_4)
             per.setCord_x( per.getCord_x()+vel )
         
         if event.key == pygame.K_w:
           statoCol3 = per.collidStanza(SCHERMO.get_width(), SCHERMO.get_height())
           if statoCol3 == True:
-            SCHERMO.fill((0,0,0))
             per.setImmagine(img_u_7)
             per.setCord_y( per.getCord_y()-vel )
         
         if event.key == pygame.K_s:
           statoCol4 = per.collidStanza(SCHERMO.get_width(), SCHERMO.get_height())
           if statoCol4 == True:
-            SCHERMO.fill((0,0,0))
+            #SCHERMO.fill((0,0,0)) tolti per evitare quella frazione di secondo con schermo nero ad ogni movimento
             per.setImmagine(img_u_1)
             per.setCord_y( per.getCord_y()+vel )
     aggiorna()

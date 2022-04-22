@@ -75,7 +75,6 @@ def main_gioco():
         
         stato_btn_scelta_s = btn_scelta_s.pressed_button(cordMouse_x, cordMouse_y)
         if stato_btn_scelta_s == True:
-          SCHERMO.fill((0,0,0))
           if img_personaggio == "uomo":
             per.setImmagine(img_donna)
             img_personaggio = "donna"
@@ -85,7 +84,6 @@ def main_gioco():
 
         stato_btn_scelta_d = btn_scelta_d.pressed_button(cordMouse_x, cordMouse_y)
         if stato_btn_scelta_d == True:
-          SCHERMO.fill((0,0,0))
           if img_personaggio == "uomo":
             per.setImmagine(img_donna)
             img_personaggio = "donna"

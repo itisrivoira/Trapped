@@ -62,29 +62,23 @@ def main_impostazioni():
       #ottengo coordinate mouse
       cordMouse_x, cordMouse_y = pygame.mouse.get_pos()
 
-      #verifico se passo sopra ad un button
-      #btn_musica_acceso.on_button(cordMouse_x, cordMouse_y, img_btn_acceso, img_btn_acceso_on)
-      #btn_musica_spento.on_button(cordMouse_x, cordMouse_y, img_btn_spento, img_btn_spento_on)
-      #btn_suoni_acceso.on_button(cordMouse_x, cordMouse_y, img_btn_acceso, img_btn_acceso_on)
-      #btn_suoni_spento.on_button(cordMouse_x, cordMouse_y, img_btn_spento, img_btn_spento_on)
-
       #verifico se clicco un button
       if event.type == pygame.MOUSEBUTTONDOWN:
-
+        stato_btnMusOff = btn_musica_spento.pressed_button(cordMouse_x, cordMouse_y)
         stato_bntMusOn = btn_musica_acceso.pressed_button(cordMouse_x, cordMouse_y)
         if stato_bntMusOn == True:
           musica.play()
           btn_musica_acceso.setImmagine(img_btn_acceso_on)
           btn_musica_spento.setImmagine(img_btn_spento)
 
-        stato_btnMusOff = btn_musica_spento.pressed_button(cordMouse_x, cordMouse_y)
         if stato_btnMusOff == True:
+          f = False
           musica.stop()
           btn_musica_acceso.setImmagine(img_btn_acceso)
           btn_musica_spento.setImmagine(img_btn_spento_on)
         
         #da finire mettere suoni per quando premi i tasti
-        #bug da correggiere se clicco sulsante già acceso
+        #bug da correggiere se clicco pulsante già acceso
         stato_btnSonOn = btn_suoni_acceso.pressed_button(cordMouse_x, cordMouse_y)
         if stato_btnSonOn == True:
           btn_suoni_acceso.setImmagine(img_btn_acceso_on)
