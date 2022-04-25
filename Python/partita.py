@@ -72,18 +72,21 @@ def main_partita():
           if statoCol1 == True:
             per.setImmagine(img_u_10)
             per.setCord_x( per.getCord_x()-vel )
+          print(per.getCord_x, per.getCord_y)
 
         if event.key == pygame.K_d:
           statoCol2 = per.collidStanza(SCHERMO.get_width(), SCHERMO.get_height())
           if statoCol2 == True:
             per.setImmagine(img_u_4)
             per.setCord_x( per.getCord_x()+vel )
+          print(per.getCord_x, per.getCord_y)
         
         if event.key == pygame.K_w:
           statoCol3 = per.collidStanza(SCHERMO.get_width(), SCHERMO.get_height())
           if statoCol3 == True:
             per.setImmagine(img_u_7)
             per.setCord_y( per.getCord_y()-vel )
+          print(per.getCord_x, per.getCord_y)
         
         if event.key == pygame.K_s:
           statoCol4 = per.collidStanza(SCHERMO.get_width(), SCHERMO.get_height())

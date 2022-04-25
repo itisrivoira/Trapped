@@ -1,4 +1,8 @@
-import pygame, sys
+import pygame
+import pygame.gfxdraw
+import sys
+import time
+import random
 
 class Testo():
   def __init__(self, font, size, testo, colore, punto_x, punto_y):
@@ -128,10 +132,10 @@ class Personaggio():
     self.setCord_y(punto_y)
     self.setWidth()
     self.setHeight()
-    #self.right_pressed = False
-    #self.up_pressed = False
-    #self.down_pressed = False
-    #self.speed = 4
+    self.right_pressed = False
+    self.up_pressed = False
+    self.down_pressed = False
+    self.speed = 4
 
   def setImmagine(self, i):
     self.immagine = i
@@ -181,3 +185,40 @@ class Personaggio():
       
     self.setCord_x(self.getCord_x()+self.getVelX())
     self.setCord_y(self.getCord_y() +self.getVelY())
+
+class Domande():
+  def __init__(self, img = "", testo = "", corretta = "", punto_x = 0, punto_y = 0):
+      self.setImmagine(img)
+      self.setCord_x(punto_x)
+      self.setCord_y(punto_y)
+      self.setTesto(testo)
+      self.setCorretta(corretta)
+  
+  def setImmagine(self, i):
+    self.__immagine = i
+	
+  def getImmagine(self):
+    return self.__immagine
+  
+  def setCord_x(self, x):
+    self.cordX = x
+	
+  def getCord_x(self):
+    return self.cordX
+	
+  def setCord_y(self, y):
+    self.cordY = y
+	
+  def getCord_y(self):
+    return self.cordY
+  def setTesto(self, testo):
+    self.__testo = testo
+	
+  def getTesto(self):
+    return self.__testo
+  
+  def setCorretta(self, corretta):
+    self.__corretta = corretta
+	
+  def getCorretta(self):
+    return self.__corretta
