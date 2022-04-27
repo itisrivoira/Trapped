@@ -39,9 +39,6 @@ body{
 .frecciagiu{
   max-width: 600px;
   color: white;
-  position: relative;
-  top: -100px;
-  background-color: #200C64;
 }
 
 .titolotrapped{
@@ -49,6 +46,10 @@ body{
   display: flex;
   justify-content: center;
   font-size: 150px;
+  font-family: "TRAPPED";
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .sinostra{
@@ -101,7 +102,6 @@ body{
   background-color: transparent;
   width: 300px;
   height: 200px;
-  border: 1px solid #f1f1f1;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   margin-left: 8%;
 }
@@ -147,11 +147,12 @@ body{
 
 .imgpersonaggi{
   transform: scale(2.5); 
+  backface-visibility: hidden;
 }
 
 .testo{
   font-family: Arial;
-  font-size: 20px;
+  font-size: 25px;
   color: white;
   width: 60%;
   justify-content: center;
@@ -160,10 +161,16 @@ body{
   margin-bottom: 5%;
 }
 
-#titolostoria{
-  justify-content: center;
-  margin-left:40%;
-  margin-bottom: 5%;
+.titolostoria{
+
+  font-family: 'Bungee';
+  font-size: xx-large;
+  color: white;
+}
+
+.formmail{
+  margin-top: 5%;
+  margin-bottom: 10%;
 }
 
 .logoDenina{
@@ -323,4 +330,9 @@ section .wave.wave4{
 @font-face {
 	font-family: 'Bungee';
 	src: url('./font/Bungee-Regular.ttf');
+}
+
+@font-face {
+	font-family: "TRAPPED";
+	src: url("../font/04B_30__.TTF");
 }
