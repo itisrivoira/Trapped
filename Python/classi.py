@@ -1,5 +1,4 @@
 import pygame
-import pygame.gfxdraw
 import sys
 import time
 import random
@@ -126,11 +125,11 @@ class Immagini():
     return self.cordY
 
 class Personaggio():
-  def __init__(self, img, x, y):
+  def __init__(self, img, x, y, schermo):
     self.animazione_down = ["./IMMAGINI/PERSONAGGI/UOMO/uomo_davanti_1.png", "./IMMAGINI/PERSONAGGI/UOMO/uomo_davanti_2.png", "./IMMAGINI/PERSONAGGI/UOMO/uomo_davanti_3.png"]
     self.animazione_up = ["./IMMAGINI/PERSONAGGI/UOMO/uomo_dietro_1.png", "./IMMAGINI/PERSONAGGI/UOMO/uomo_dietro_2.png", "./IMMAGINI/PERSONAGGI/UOMO/uomo_dietro_3.png"]
     self.animazione_left = ["./IMMAGINI/PERSONAGGI/UOMO/uomo_sinistra_1.png", "./IMMAGINI/PERSONAGGI/UOMO/uomo_sinistra_2.png", "./IMMAGINI/PERSONAGGI/UOMO/uomo_sinistra_3.png"]
-
+    self.schermo=schermo
     self.contatore_valore = 0.9
     self.is_walking = False
 
@@ -154,6 +153,7 @@ class Personaggio():
     self.up_pressed = False
     self.down_pressed = False
     self.speed = 3
+    self.collisioni(schermo, x, y, nomestanza='classe')
 
   def setImmagine(self, i):
     self.immagine = i
@@ -269,6 +269,39 @@ class Personaggio():
 
     self.setCord_x(self.getCord_x() + self.velX)
     self.setCord_y(self.getCord_y() + self.velY)
+  
+  def collisioni(self,schermo,x,y,nomestanza):
+    self.x=x
+    self.y=y
+    self.schermo=schermo
+    self.rectP=pygame.Rect((self.getCord_x(), self.getCord_y()), (self.immagine.get_width(), self.immagine.get_height()))
+    #stanza attuale
+    self.stanza=nomestanza
+
+    #posizione player
+    txt="x-> "+str(x)+" y-> "+str(y)
+    print(txt)
+
+    if self.stanza == 'classe':
+      print('ottima classe davvero uno spettacolo')
+      #parte alta stanza
+      col1=pygame.Rect((0,70),(600,20))
+      pygame.draw.rect(schermo,"green", col1)
+      pygame.draw.rect(schermo,"purple", self.rectP)
+    
+      for col in [col1]:
+        if self.rectP.colliderect(col):
+          print('collisionenfajdglkadjn')
+          if self.left:
+            self.x+=self.speed
+          if self.right:
+            self.x-=self.speed
+          if self.up:
+            self.y+=self.speed
+          if self.down:
+            self.y-=self.speed
+    
+    return self.x,self.y,self.stanza
 
 class Domande():
   def __init__(self, img = "", testo = "", corretta = "", punto_x = 0, punto_y = 0):

@@ -47,7 +47,7 @@ def carica_immagini():
 def inizializza():
   global stanza, per
   stanza = classi.Immagini(img_classe, 0, 0)
-  per = classi.Personaggio(img_u_10, 550, 290)
+  per = classi.Personaggio(img_u_10, 550, 290, SCHERMO)
 
 def aggiorna():
 	global clock
@@ -96,7 +96,8 @@ def main_partita():
         
       if event.type == pygame.KEYDOWN:
         clicca(event, True)
-
+        per.collisioni(SCHERMO, per.getCord_x(), per.getCord_y(), 'classe')
+        
         if event.key == pygame.K_ESCAPE:
             running_partita = False
 
