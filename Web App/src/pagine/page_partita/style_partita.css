@@ -1,0 +1,193 @@
+@font-face {
+	font-family: "Retro Gaming";
+	src: url("../font/Retro\ Gaming.ttf");
+}
+
+.partita{
+  background-image: url(../img/sfondo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.contenitore{
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+}
+
+.sinistra{
+  width: 60%;
+  height: 75%;
+}
+
+.menu{
+  position: absolute;
+  top: 0;
+  margin: 30px;
+  width: 80px;
+}
+
+.cron{
+  display: flex;
+  justify-content: center;
+  font-family: "Retro Gaming";
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  width: 80px;
+}
+
+.titolo{
+  width: 100%;
+  height: 10%;
+  color: white;
+  text-align: center;
+  font-family: "Retro Gaming";
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 4px 4px black;
+}
+
+.mappa{
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img{
+  height: 100%;
+}
+
+.destra{
+  width: 40%;
+  height: 75%;
+}
+
+.btn{
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.cuori, .aiuti{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.contCuori, .contAiuti{
+  display: inline;
+  margin-right: 80px;
+  margin-top: 10px;
+  height: 100%;
+}
+
+.cuore, .aiuto{
+  margin: 5px;
+}
+
+input[type="radio"]{
+  -webkit-appearance: none;
+}
+
+label{
+  height: 50px;
+  width: 70%;
+  border: solid black 4px;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Retro Gaming";
+  font-size: 20px;
+}
+
+input[type="radio"]:checked + label{
+  background-color: black;
+  border: solid white 4px;
+  color: white;
+}
+
+.button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  margin: 10px;
+}
+
+.contDomanda{
+  border-top: solid 6px black;
+  background-color: white;
+  width: 100%;
+  height: 25%;
+  position : absolute;
+  bottom:0;
+}
+
+.domanda{
+  height: 90%;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  font-family: "Retro Gaming";
+  font-size: 20px;
+}
+
+.interlocutore{
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testoDomanda{
+  height: 100%;
+  width: 60%;
+  display: flex;
+  align-items:center;
+  color: black;
+}
+
+.risp{
+  display: inline-block;
+  height: 10%;
+  width: 50%;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.contAvanti{
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.avanti{
+  margin: 10px;
+  height: 50%;
+  width: 100%;
+  background-color: white;
+  border: solid 4px black;
+  color: black;
+  border-radius: 15px;
+  font-family: "Retro Gaming";
+  font-size: 20px;
+}
+
+.avanti:hover{
+  background-color: black;
+  border: solid 4px white;
+  color: white;
+  transition: 0.5s;
+}

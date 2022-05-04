@@ -1,0 +1,33 @@
+@font-face {
+	font-family: "0AB 30";
+	src: url("../font/04B_30__.TTF");
+}
+
+.contGameOver{
+  background-image: url(../img/sfondo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.contTitGameOver{
+  display: inline-block;
+}
+
+.titoloGameO{
+  color: black;
+  font-family: "0AB 30";
+  font-size: 100px;
+  font-weight: bold;
+  text-shadow: 5px 5px white;
+}
+
+.btnEsciGameOver{
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+}
