@@ -36,6 +36,22 @@ body{
   justify-content: center;
 }
 
+.divgioca{
+  margin-bottom: 10%;
+}
+
+.btngioca{
+  margin-left: 35%;
+  width: 30%;
+  height: 80px;
+  border-radius: 30px 30px 30px 30px;
+}
+
+input[class=btngioca][type=submit]{
+  font-size: 40px;
+  font-family: "TRAPPED";
+}
+
 .frecciagiu{
   max-width: 600px;
   color: white;
@@ -86,7 +102,7 @@ body{
 .noi{
   display: flex;
   margin-top: 7%;
-  margin-bottom: 7%;
+  margin-bottom: 15%;
 }
 
 .carte{
@@ -150,6 +166,16 @@ body{
   backface-visibility: hidden;
 }
 
+.divi{
+  margin-bottom: 7%;
+}
+
+.tastodown{
+  display: flex;
+  margin-left: 20%;
+  width: 60%;
+}
+
 .testo{
   font-family: Arial;
   font-size: 25px;
@@ -157,8 +183,8 @@ body{
   width: 60%;
   justify-content: center;
   margin-left:20%;
-  margin-top: 2%;
-  margin-bottom: 5%;
+  margin-top: 5%;
+  margin-bottom: 15%;
 }
 
 .installazione{
