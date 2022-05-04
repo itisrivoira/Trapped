@@ -281,9 +281,9 @@ class Personaggio():
     #posizione player
     txt="x-> "+str(x)+" y-> "+str(y)
     print(txt)
-
+    #creare un percorso obbligatorio da far fare al personaggio  
     if self.stanza == 'classe':
-      print('ottima classe davvero uno spettacolo')
+      #print('ottima classe davvero uno spettacolo')
       #parte alta stanza
       col1=pygame.Rect((0,70),(600,20))
       pygame.draw.rect(schermo,"green", col1)
@@ -293,21 +293,32 @@ class Personaggio():
         if self.rectP.colliderect(col):
           print('collisionenfajdglkadjn')
           if self.left:
-            self.x+=self.speed
+            self.is_walking = False
+            self.speed = 0
+            self.update()
           if self.right:
-            self.x-=self.speed
+            self.is_walking = False
+            self.speed = 0
+            self.update()
           if self.up:
-            self.y+=self.speed
+            self.is_walking = False
+            self.speed = 0
+            self.update()
           if self.down:
-            self.y-=self.speed
+            self.is_walking = False
+            self.speed = 0
+            self.update()
     
     return self.x,self.y,self.stanza
 
-class Domande():
+class Domande(Testo):
   def __init__(self, img = "", testo = "", corretta = "", punto_x = 0, punto_y = 0):
+      super().__init__("./font/Retro Gaming.ttf", 20, testo, (0,0,0), punto_x, punto_y)
       self.setImmagine(img)
-      self.setCord_x(punto_x)
-      self.setCord_y(punto_y)
+      super().setCord_x(punto_x)
+      super().setCord_y(punto_y)
+      x = super().getCord_x()
+      y = super().getCord_y()
       self.setTesto(testo)
       self.setCorretta(corretta)
   
@@ -317,22 +328,8 @@ class Domande():
   def getImmagine(self):
     return self.__immagine
   
-  def setCord_x(self, x):
-    self.cordX = x
-	
-  def getCord_x(self):
-    return self.cordX
-	
-  def setCord_y(self, y):
-    self.cordY = y
-	
-  def getCord_y(self):
-    return self.cordY
-  def setTesto(self, testo):
-    self.__testo = testo
-	
-  def getTesto(self):
-    return self.__testo
+  #def setTesto(self, testo):
+   # domanda = super.__init__("./font/Retro Gaming.ttf", 20, testo, (0,0,0),  x, y)
   
   def setCorretta(self, corretta):
     self.__corretta = corretta
