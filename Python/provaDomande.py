@@ -20,7 +20,7 @@ def disegna_domanda():
   #[0][1][0] primo la domanda,secondo risposta alla domanda, l'ultimo sempre a 0 o è out of range
   for i in range(11):
     domanda = domande.domande[0][0][0]
-    txt_d = classi.Domande("./font/Retro Gaming.ttf", 20, domanda, (0,0,0), 60, 50)
+    txt_d = classi.Domande((0,0,0), domanda, (0,1,0), 60, 50)
     SCHERMO.blit(txt_d.surf_text, ( txt_d.getCord_x(), txt_d.getCord_y() ))
 
 def disegna_main():

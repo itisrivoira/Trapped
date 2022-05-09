@@ -1,7 +1,4 @@
 import pygame
-import sys
-import time
-import random
 
 class Testo():
   def __init__(self, font, size, testo, colore, punto_x, punto_y):
@@ -317,8 +314,8 @@ class Domande(Testo):
       self.setImmagine(img)
       super().setCord_x(punto_x)
       super().setCord_y(punto_y)
-      x = super().getCord_x()
-      y = super().getCord_y()
+      self.x = super().setCord_x(punto_x)
+      self.y = super().setCord_y(punto_y)
       self.setTesto(testo)
       self.setCorretta(corretta)
   
@@ -328,8 +325,8 @@ class Domande(Testo):
   def getImmagine(self):
     return self.__immagine
   
-  #def setTesto(self, testo):
-   # domanda = super.__init__("./font/Retro Gaming.ttf", 20, testo, (0,0,0),  x, y)
+  def setTesto(self, testo):
+    self.domanda = testo
   
   def setCorretta(self, corretta):
     self.__corretta = corretta
