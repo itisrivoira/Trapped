@@ -1,6 +1,7 @@
 import pygame, sys
 import classi
 import partita
+import varGlobali as vg
 pygame.init()
 
 ### carico immagini ##############################################
@@ -27,7 +28,7 @@ FPS = 60
 img_sfondo = classi.Immagini(img_sfondo, 0, 0)
 txt_sceG = classi.Testo("./font/Retro Gaming.ttf", 40, "Scegli personaggio", (255, 255, 255), 60, 50)
 btn_scelta_s = classi.Button(img_scelta_s, 173, 300)
-per = classi.Personaggio(img_uomo, 275, 300, SCHERMO)
+per = classi.Personaggio(img_uomo, 275, 300)
 btn_scelta_d = classi.Button(img_scelta_d, 382, 300)
 btn_tornaIndietro2 = classi.Button(img_btn_tornaIndietro, 50, 500)
 btn_inizia = classi.Button(img_inizia, 227.5, 450)
@@ -76,18 +77,22 @@ def main_gioco():
         stato_btn_scelta_s = btn_scelta_s.pressed_button(cordMouse_x, cordMouse_y)
         if stato_btn_scelta_s == True:
           if img_personaggio == "uomo":
+            vg.character = 1
             per.setImmagine(img_donna)
             img_personaggio = "donna"
           elif img_personaggio == "donna":
+            vg.character = 0
             per.setImmagine(img_uomo)
             img_personaggio = "uomo"
 
         stato_btn_scelta_d = btn_scelta_d.pressed_button(cordMouse_x, cordMouse_y)
         if stato_btn_scelta_d == True:
           if img_personaggio == "uomo":
+            vg.character = 1
             per.setImmagine(img_donna)
             img_personaggio = "donna"
           elif img_personaggio == "donna":
+            vg.character = 0
             per.setImmagine(img_uomo)
             img_personaggio = "uomo"
         
