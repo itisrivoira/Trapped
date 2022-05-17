@@ -1,0 +1,56 @@
+@font-face {
+	font-family: "Retro Gaming";
+	src: url("../font/Retro\ Gaming.ttf");
+}
+
+.contenitore_configP {
+  background-image: url(../img/sfondo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.row_configP{
+  display: inline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25%;
+}
+
+.row_configPInput{
+  display: inline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.row_configPB{
+  display: inline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+}
+
+.col_confP{
+  display: inline-flex;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+}
+
+.titolo_configP{
+  font-family: "Retro Gaming";
+  font-size: 60px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 5px 5px black;
+}
+
+.inputName{
+  font-family: "Retro Gaming";
+}
