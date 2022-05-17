@@ -1,5 +1,6 @@
+from asyncio import proactor_events
 import pygame, sys
-import classi
+import classi, provaDomande
 import varGlobali as vg
 pygame.init()
 
@@ -19,6 +20,9 @@ def carica_immagini():
   img_classe = pygame.transform.scale(img_classe, ( img_classe.get_width()*MUL, img_classe.get_height()*MUL ))
 
 ##programma ####################################################
+txt_dialogo1 = classi.Testo("./font/Retro Gaming.ttf", 20, "Premi spazio", (0, 0, 0), 230, 530)
+txt_dialogo2 = classi.Testo("./font/Retro Gaming.ttf", 20, "Premi g per interagire con il pc", (0, 0, 0), 230, 530)
+
 def inizializza():
   global stanza, per
   stanza = classi.Immagini(img_classe, 0, 0)
@@ -26,8 +30,6 @@ def inizializza():
     per = classi.Personaggio(vg.img_u_10, 550, 280)
   else:
     per = classi.Personaggio(vg.img_d_10, 550, 280)
-
-  txt_dialog1 = classi.Testo("./font/Retro Gaming.ttf", 20, "Premi spazio", (255, 255, 255), 140, 50)
 
 def aggiorna():
 	global clock
@@ -39,8 +41,13 @@ def disegna_partita():
   SCHERMO.fill((0,0,0))
   SCHERMO.blit(stanza.getImmagine(), ( stanza.getCord_x(), stanza.getCord_y() ))
   SCHERMO.blit(per.getImmagine(), ( per.getCord_x(), per.getCord_y() ))
-  pygame.draw.rect(SCHERMO, (255,255,255), (150,490,300,100),0)
-  #SCHERMO.blit(txt_dialog1.surf_text, ( txt_dialog1.getCord_x(), txt_dialog1.getCord_y() ))
+  if dialogo1 == True:
+    pygame.draw.rect(SCHERMO, (255,255,255), (150,490,300,100),0)
+    SCHERMO.blit(txt_dialogo1.surf_text, ( txt_dialogo1.getCord_x(), txt_dialogo1.getCord_y() ))
+  
+  if dialogo2 == True:
+    pygame.draw.rect(SCHERMO, (255,255,255), (150,490,300,100),0)
+    SCHERMO.blit(txt_dialogo2.surf_text, ( txt_dialogo2.getCord_x(), txt_dialogo2.getCord_y() ))
 
 def clicca(pulsante, flag):
   if pulsante.key == pygame.K_a or pulsante.key == pygame.K_LEFT:
@@ -60,11 +67,12 @@ def clicca(pulsante, flag):
     per.setIsWalking(flag)
 
 def muoviti(flag):
-  global flag_x, flag_y
+  global flag_x, flag_y, dialogo1, dialogo2
   per.setIsWalking(False)
 
   if flag == True:
     per.setIsWalking(True)
+    dialogo1 = False
 
     #da porta al centro stanza
     if per.getCord_x() >= 280 and not flag_x:
@@ -93,9 +101,10 @@ def muoviti(flag):
             per.setUpPressed(False)
             flag_x = True
             per.setImmagine(pygame.image.load(per.animazione_up[0]))
-            return True
-  else:
-    return False
+            dialogo2 = True
+            #return True
+  #else:
+   # return False
 
 def muoviti2(flag):
   global flag_x, flag_y
@@ -125,11 +134,13 @@ def muoviti2(flag):
           per.setImmagine(pygame.image.load(per.animazione_up[0]))
 
 def main_partita():
-  global clock, flag_x, flag_y
+  global clock, flag_x, flag_y, dialogo1, dialogo2
   running_partita = True
   flag_muoviti = False
   flag_x, flag_y = False, False
   flag_muoviti2 = False
+  dialogo1 = True
+  dialogo2 = False
 
   carica_immagini()
   inizializza()
@@ -148,14 +159,20 @@ def main_partita():
         
         if event.key == pygame.K_SPACE:
             flag_muoviti = True
+        
+        if event.key == pygame.K_g:
+            provaDomande.main_domande()
+            dialogo2 = False
 
-    if muoviti(flag_muoviti):
-      flag_muoviti = False
-      flag_muoviti2 = True #modifico poi quando a finito enigma
+    muoviti(flag_muoviti)
+      #flag_muoviti = False
+      
+      #flag_muoviti2 = True #modifico poi quando a finito enigma
     
-    if flag_muoviti2 == True:
+    #if flag_muoviti2 == True:
+     # per.setImmagine(pygame.image.load(per.animazione_up[0]))
       #muoviti2(flag_muoviti2)
-      pass
+      
     per.update()
     aggiorna()
 

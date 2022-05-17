@@ -42,10 +42,9 @@ def aggiorna():
 
 def disegna_domanda():
   domanda = domande.domande[0][0][0]
-  corr = domande.domande[0][1][0]
   ris = [domande.domande[0][1][0], domande.domande[0][2][0], domande.domande[0][3][0], domande.domande[0][4][0]]
   random.shuffle(ris)
-  global d 
+  global d
   d = classi.Testo("./font/Retro Gaming.ttf", 20, domanda, (0,0,0), 50, 50)
   for i in range (4):
     if ris[i]=='Nessuna delle precedenti':
@@ -56,10 +55,18 @@ def disegna_domanda():
   img_btn3 = creabtn(ris[2], f)
   img_btn4 = creabtn(ris[3], f)
   global d1, d2, d3, d4 
-  d1 = classi.Button(img_btn1, 60, 150)
-  d2 = classi.Button(img_btn2, 360, 150)
-  d3 = classi.Button(img_btn3, 60, 300)
+  d1 = classi.Button(img_btn1, 120, 170)
+  d2 = classi.Button(img_btn2, 360, 170)
+  d3 = classi.Button(img_btn3, 120, 300)
   d4 = classi.Button(img_btn4, 360, 300)
+
+def controlla_risp(r):
+  corr = domande.domande[0][1][0]
+  print(corr)
+  if (str(r)==corr):
+    print('corretta')
+  else:
+    print('sbagliatoo')
 
 def disegna_main():
   SCHERMO.blit(img_pc.getImmagine(), ( img_pc.getCord_x(), img_pc.getCord_y() ))
@@ -69,14 +76,34 @@ def disegna_main():
   SCHERMO.blit(d4.getImmagine(),(d4.getCord_x(), d4.getCord_y()))
   SCHERMO.blit(d.surf_text, (d.getCord_x(), d.getCord_y()))
 
-running = True
-disegna_domanda()
-while running:
-    disegna_main()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-          statod1 = d1.setImmagine()
-    aggiorna()
+def main_domande():
+  running = True
+  disegna_domanda()
+  while running:
+      disegna_main()
+      for event in pygame.event.get():
+          if event.type == pygame.QUIT:
+              pygame.quit()
+              sys.exit()
+          cordMouse_x, cordMouse_y = pygame.mouse.get_pos()
+          if event.type == pygame.MOUSEBUTTONDOWN:
+            statod1 = d1.pressed_button(cordMouse_x, cordMouse_y)
+            if statod1 == True:
+              print("clicked d1")
+              controlla_risp(d1)
+            statod2 = d2.pressed_button(cordMouse_x, cordMouse_y)
+            if statod2 == True:
+              print("clicked d2")
+              controlla_risp(d2)
+            statod3 = d3.pressed_button(cordMouse_x, cordMouse_y)
+            if statod3 == True:  
+              print("clicked d3")
+              controlla_risp(d3)
+            statod4 = d4.pressed_button(cordMouse_x, cordMouse_y)
+            if statod4 == True:
+              print("clicked d4")
+              controlla_risp(d4)
+      aggiorna()
+
+if __name__ == "__main__":
+	main_domande()

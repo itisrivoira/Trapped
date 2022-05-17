@@ -1,8 +1,4 @@
 import pygame
-import pygame.gfxdraw
-import sys
-import time
-import random
 import varGlobali as vg
 
 class Testo():
@@ -274,40 +270,3 @@ class Personaggio():
 
     self.setCord_x(self.getCord_x() + self.velX)
     self.setCord_y(self.getCord_y() + self.velY)
-
-class Domande():
-  def __init__(self, img = "", testo = "", corretta = "", punto_x = 0, punto_y = 0):
-      self.setImmagine(img)
-      self.setCord_x(punto_x)
-      self.setCord_y(punto_y)
-      self.setTesto(testo)
-      self.setCorretta(corretta)
-  
-  def setImmagine(self, i):
-    self.__immagine = i
-	
-  def getImmagine(self):
-    return self.__immagine
-  
-  def setCord_x(self, x):
-    self.cordX = x
-	
-  def getCord_x(self):
-    return self.cordX
-	
-  def setCord_y(self, y):
-    self.cordY = y
-	
-  def getCord_y(self):
-    return self.cordY
-  def setTesto(self, testo):
-    self.__testo = testo
-	
-  def getTesto(self):
-    return self.__testo
-  
-  def setCorretta(self, corretta):
-    self.__corretta = corretta
-	
-  def getCorretta(self):
-    return self.__corretta

@@ -1,5 +1,5 @@
 domande = [#la prima è quella corretta
-    [["Quali tra questi è un \n sistema operativo open source?"], ['Ubuntu'], ['MacOS'], ['Windows'], ['Nessuna delle precedenti']],
+    [["Quali tra questi è un" + "\n" + "sistema operativo open source?"], ['Ubuntu'], ['MacOS'], ['Windows'], ['Nessuna delle precedenti']],
     [["In un servizio DNS quale tra questi protocollo viene usato assegnare un nome ad un indirizzo ip?"], ['A Record'], ['CNAME'], ['NS Record'], ['SOA']],
     [["Quale tra questi linguaggi di programmazione è compilato?"], ['C'], ['JavaScript'], ['Python'], ['PHP']],
     [["Quale tra questi non è una funzione sql per i database?"], ['DFL'], ['DDL'], ['DML'], ['Query language']],
