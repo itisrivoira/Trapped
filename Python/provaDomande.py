@@ -41,10 +41,10 @@ def aggiorna():
 	pygame.time.Clock().tick(FPS)
 
 def disegna_domanda():
+  global d, ris, d1, d2, d3, d4
   domanda = domande.domande[0][0][0]
   ris = [domande.domande[0][1][0], domande.domande[0][2][0], domande.domande[0][3][0], domande.domande[0][4][0]]
   random.shuffle(ris)
-  global d
   d = classi.Testo("./font/Retro Gaming.ttf", 20, domanda, (0,0,0), 50, 50)
   for i in range (4):
     if ris[i]=='Nessuna delle precedenti':
@@ -54,7 +54,6 @@ def disegna_domanda():
   img_btn2 = creabtn(ris[1], f)
   img_btn3 = creabtn(ris[2], f)
   img_btn4 = creabtn(ris[3], f)
-  global d1, d2, d3, d4 
   d1 = classi.Button(img_btn1, 120, 170)
   d2 = classi.Button(img_btn2, 360, 170)
   d3 = classi.Button(img_btn3, 120, 300)
@@ -62,9 +61,12 @@ def disegna_domanda():
 
 def controlla_risp(r):
   corr = domande.domande[0][1][0]
-  print(corr)
+  #print(corr)
   if (str(r)==corr):
     print('corretta')
+    SCHERMO.fill(0,0,0)
+    yes = classi.Testo("./font/Retro Gaming.ttf", 40, 'risposta corretta', (255,255,255), 300,300)
+    SCHERMO.blit(yes.surf_text, (yes.getCord_x(), yes.getCord_y()))
   else:
     print('sbagliatoo')
 
@@ -90,19 +92,19 @@ def main_domande():
             statod1 = d1.pressed_button(cordMouse_x, cordMouse_y)
             if statod1 == True:
               print("clicked d1")
-              controlla_risp(d1)
+              controlla_risp(ris[0])
             statod2 = d2.pressed_button(cordMouse_x, cordMouse_y)
             if statod2 == True:
               print("clicked d2")
-              controlla_risp(d2)
+              controlla_risp(ris[1])
             statod3 = d3.pressed_button(cordMouse_x, cordMouse_y)
             if statod3 == True:  
               print("clicked d3")
-              controlla_risp(d3)
+              controlla_risp(ris[2])
             statod4 = d4.pressed_button(cordMouse_x, cordMouse_y)
             if statod4 == True:
               print("clicked d4")
-              controlla_risp(d4)
+              controlla_risp(ris[3])
       aggiorna()
 
 if __name__ == "__main__":
