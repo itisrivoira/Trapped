@@ -21,7 +21,7 @@ app.post("/arrivamail", (req, res) => {
         service: 'gmail',
         auth: {
             user: "1448218569m@gmail.com",
-            pass: "meichang3210"
+            pass: "asd"
         }
 	});
   
