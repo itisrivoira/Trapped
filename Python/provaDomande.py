@@ -64,9 +64,7 @@ def controlla_risp(r):
   #print(corr)
   if (str(r)==corr):
     print('corretta')
-    SCHERMO.fill(0,0,0)
-    yes = classi.Testo("./font/Retro Gaming.ttf", 40, 'risposta corretta', (255,255,255), 300,300)
-    SCHERMO.blit(yes.surf_text, (yes.getCord_x(), yes.getCord_y()))
+    return True
   else:
     print('sbagliatoo')
 
@@ -92,19 +90,35 @@ def main_domande():
             statod1 = d1.pressed_button(cordMouse_x, cordMouse_y)
             if statod1 == True:
               print("clicked d1")
-              controlla_risp(ris[0])
+              y = controlla_risp(ris[0])
+              if (y==True):
+                SCHERMO.fill((0,0,0))
+                yes = classi.Testo("./font/Retro Gaming.ttf", 40, 'risposta corretta', (255,255,255), 300,300)
+                SCHERMO.blit(yes.surf_text, (yes.getCord_x(), yes.getCord_y()))
             statod2 = d2.pressed_button(cordMouse_x, cordMouse_y)
             if statod2 == True:
               print("clicked d2")
-              controlla_risp(ris[1])
+              y = controlla_risp(ris[1])
+              if (y==True):
+                SCHERMO.fill((0,0,0))
+                yes = classi.Testo("./font/Retro Gaming.ttf", 40, 'risposta corretta', (255,255,255), 300,300)
+                SCHERMO.blit(yes.surf_text, (yes.getCord_x(), yes.getCord_y()))
             statod3 = d3.pressed_button(cordMouse_x, cordMouse_y)
             if statod3 == True:  
               print("clicked d3")
-              controlla_risp(ris[2])
+              y = controlla_risp(ris[2])
+              if (y==True):
+                SCHERMO.fill((0,0,0))
+                yes = classi.Testo("./font/Retro Gaming.ttf", 40, 'risposta corretta', (255,255,255), 300,300)
+                SCHERMO.blit(yes.surf_text, (yes.getCord_x(), yes.getCord_y()))
             statod4 = d4.pressed_button(cordMouse_x, cordMouse_y)
             if statod4 == True:
               print("clicked d4")
-              controlla_risp(ris[3])
+              y = controlla_risp(ris[3])
+              if (y==True):
+                SCHERMO.fill((0,0,0))
+                yes = classi.Testo("./font/Retro Gaming.ttf", 40, 'risposta corretta', (255,255,255), 300,300)
+                SCHERMO.blit(yes.surf_text, (yes.getCord_x(), yes.getCord_y()))
       aggiorna()
 
 if __name__ == "__main__":
