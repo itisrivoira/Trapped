@@ -10,16 +10,18 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-app.post("/", (req, res) => {
+app.post("/arrivamail", (req, res) => {
 
-	let mailsor = res.body.sorgente
-	let corpomail = res.body.corpomail
+	console.log("server mail");
+
+	let mailsor = req.body.sorgente
+	let corpomail = req.body.corpomail
 
 	let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: "mei.chang@denina.it",
-            pass: "PASSWORD"
+            user: "1448218569m@gmail.com",
+            pass: "meichang3210"
         }
 	});
   

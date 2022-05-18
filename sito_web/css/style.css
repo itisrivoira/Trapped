@@ -99,6 +99,16 @@ body{
   font-family: 'Bungee';
 }
 
+.stanzeimm{
+  transform: scale(0.7);
+
+}
+
+.stanzetext{
+  color: black;
+  font-size: 70px;
+}
+
 .noi{
   display: flex;
   margin-top: 7%;
