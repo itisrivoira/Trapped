@@ -20,8 +20,8 @@ app.post("/arrivamail", (req, res) => {
 	let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: "1448218569m@gmail.com",
-            pass: "asd"
+            user: "mei.chang060802@gmail.com",
+            pass: "3345423765m"
         }
 	});
   
