@@ -1,5 +1,0 @@
-src
-index.html
-*.tgz
-webpack.config.js
-.eslint*
