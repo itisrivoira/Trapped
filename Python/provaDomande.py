@@ -1,5 +1,5 @@
 import pygame, sys, random
-import classi, domande
+import classi, domande, gameOver
 from PIL import Image, ImageFont, ImageDraw
 import copy
 import varGlobali as vg
@@ -12,6 +12,7 @@ img_ris = Image.open('./prova/img_vuota.png')
 img_vuota_on = Image.open('./prova/img_vuota_on.png')
 img_cuore = pygame.image.load('./IMMAGINI/BUTTON/cuore.png')
 img_cuore_u = pygame.image.load('./IMMAGINI/BUTTON/cuore_usato.png')
+img_btn_tornaIndietro = pygame.image.load('./IMMAGINI/BUTTON//img_tornaIndietro.png')
 pygame.display.set_caption("Trapped")
 SCHERMO = pygame.display.set_mode((600,600))
 FPS = 60
@@ -49,7 +50,7 @@ def allinea(ogg, allOri):
     ogg.setCord_x(nuova_x)
 
 def disegna_domanda():
-  global d, ris, ris_A, ris_B, ris_C, ris_D, r1, r2, r3, r4, giusta, sbagliata, cuore_1, cuore_2, cuore_3
+  global d, ris, ris_A, ris_B, ris_C, ris_D, r1, r2, r3, r4, giusta, sbagliata, cuore_1, cuore_2, cuore_3, btn_tornaIndietro4
   d = domande.domande[1][0][0]
   ris = [domande.domande[0][1][0], domande.domande[0][2][0], domande.domande[0][3][0], domande.domande[0][4][0]]
   random.shuffle(ris)
@@ -65,11 +66,12 @@ def disegna_domanda():
   r4 = classi.Rettangolo(110, 460, 400, ris_D.altT, (0, 0, 0), (255, 255, 255))
 
   giusta = classi.Testo("./font/Retro Gaming.ttf", 30, "Corretta!", (0, 255, 0), 300, 530)
-  sbagliata = classi.Testo("./font/Retro Gaming.ttf", 30, "Sbagliata!", (255, 0, 0), 300, 530)
 
   cuore_1 = classi.Immagini(img_cuore, 15, 15)
   cuore_2 = classi.Immagini(img_cuore, 55, 15)
   cuore_3 = classi.Immagini(img_cuore, 95, 15)
+
+  btn_tornaIndietro4 = classi.Button(img_btn_tornaIndietro, 50, 500)
 
 def controlla_risp(r):
   global cuore_1, cuore_2, cuore_3
@@ -83,10 +85,10 @@ def controlla_risp(r):
     print(vg.flag_corretta)
 
 def disegna_main():
-  global ris_A, ris_B, ris_C, ris_D, r1, r2, r3, r4, giusta, sbagliata, cuore_1, cuore_2, cuore_3
+  global ris_A, ris_B, ris_C, ris_D, r1, r2, r3, r4, giusta, sbagliata, cuore_1, cuore_2, cuore_3, btn_tornaIndietro4
 
   SCHERMO.blit(img_pc.getImmagine(), ( img_pc.getCord_x(), img_pc.getCord_y() ))
-
+  
   #stampo domanda
   font = pygame.font.Font("./font/Retro Gaming.ttf", 20)
 
@@ -117,11 +119,9 @@ def disegna_main():
   SCHERMO.blit(ris_D.surf_text, ( ris_D.getCord_x(), ris_D.getCord_y() ))
 
   if vg.flag_corretta == True:
+    SCHERMO.blit(btn_tornaIndietro4.getImmagine(), ( btn_tornaIndietro4.getCord_x(), btn_tornaIndietro4.getCord_y() ))
     allinea(giusta, True)
     SCHERMO.blit(giusta.surf_text, ( giusta.getCord_x(), giusta.getCord_y() ))
-  else:
-    allinea(sbagliata, True)
-    SCHERMO.blit(sbagliata.surf_text, ( sbagliata.getCord_x(), sbagliata.getCord_y() ))
   
   pygame.draw.rect(SCHERMO, (255,255,255), (0, 0, 150, 70),0, border_bottom_right_radius=20)
   if vg.vite == 3:
@@ -139,7 +139,8 @@ def disegna_main():
     SCHERMO.blit(cuore_1.getImmagine(), ( cuore_1.getCord_x(), cuore_1.getCord_y() ))
     SCHERMO.blit(cuore_2.getImmagine(), ( cuore_2.getCord_x(), cuore_2.getCord_y() ))
     SCHERMO.blit(cuore_3.getImmagine(), ( cuore_3.getCord_x(), cuore_3.getCord_y() ))
-  else:
+  elif vg.vite == 0:
+    vg.flag_gameOver = True
     cuore_3.setImmagine(img_cuore_u)
     cuore_2.setImmagine(img_cuore_u)
     cuore_1.setImmagine(img_cuore_u)
@@ -148,68 +149,75 @@ def disegna_main():
     SCHERMO.blit(cuore_3.getImmagine(), ( cuore_3.getCord_x(), cuore_3.getCord_y() ))
   pygame.draw.rect(SCHERMO, (0,0,0), (-5, -5, 155, 75),5, border_bottom_right_radius=20)
 
-
 def main_domande():
-  global ris_A, ris_B, ris_C, ris_D, r1, r2, r3, r4, cuore_1, cuore_2, cuore_3
+  global ris_A, ris_B, ris_C, ris_D, r1, r2, r3, r4, cuore_1, cuore_2, cuore_3, btn_tornaIndietro4
   running = True
   disegna_domanda()
   while running:
       disegna_main()
       for event in pygame.event.get():
-          if event.type == pygame.QUIT:
-              pygame.quit()
-              sys.exit()
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
 
-          #ottengo cordiante mouse
-          cordMouse_x, cordMouse_y = pygame.mouse.get_pos()
+        #ottengo cordiante mouse
+        cordMouse_x, cordMouse_y = pygame.mouse.get_pos()
 
-          #verifico se passo sopra ad un button
-          on_out_r1 = r1.on_button(cordMouse_x, cordMouse_y)
-          if on_out_r1 == True:
-            ris_A.setColore((0, 0, 0))
-          else:
-            ris_A.setColore((255, 255, 255))
-            
-          on_out_r2 = r2.on_button(cordMouse_x, cordMouse_y)
-          if on_out_r2 == True:
-            ris_B.setColore((0, 0, 0))
-          else:
-            ris_B.setColore((255, 255, 255))
-          
-          on_out_r3 = r3.on_button(cordMouse_x, cordMouse_y)
-          if on_out_r3 == True:
-            ris_C.setColore((0, 0, 0))
-          else:
-            ris_C.setColore((255, 255, 255))
-          
-          on_out_r4 = r4.on_button(cordMouse_x, cordMouse_y)
-          if on_out_r4 == True:
-            ris_D.setColore((0, 0, 0))
-          else:
-            ris_D.setColore((255, 255, 255))
-          
-          #verifico se clicco un buttton
-          if event.type == pygame.MOUSEBUTTONDOWN:
+        #verifico se passo sopra ad un button
+        on_out_r1 = r1.on_button(cordMouse_x, cordMouse_y)
 
-            stato_risp_A = r1.pressed_button(cordMouse_x, cordMouse_y)
-            if stato_risp_A == True:
-              controlla_risp(ris[0])
-            
-            stato_risp_B = r2.pressed_button(cordMouse_x, cordMouse_y)
-            if stato_risp_B == True:
-              controlla_risp(ris[1])
+        coloreB = (255, 255, 255)
+        coloreN = (0, 0, 0)
 
-            stato_risp_C = r3.pressed_button(cordMouse_x, cordMouse_y)
-            if stato_risp_C == True:
-              controlla_risp(ris[2])
-            
-            stato_risp_D = r4.pressed_button(cordMouse_x, cordMouse_y)
-            if stato_risp_D == True:
-              controlla_risp(ris[3])
+        if on_out_r1 == True:
+          ris_A.aggiorna_colore(coloreB)
+        else:
+          ris_A.aggiorna_colore(coloreN)
           
-          if vg.flag_corretta == True:
+        on_out_r2 = r2.on_button(cordMouse_x, cordMouse_y)
+        if on_out_r2 == True:
+          ris_B.aggiorna_colore(coloreB)
+        else:
+          ris_B.aggiorna_colore(coloreN)
+        
+        on_out_r3 = r3.on_button(cordMouse_x, cordMouse_y)
+        if on_out_r3 == True:
+          ris_C.aggiorna_colore(coloreB)
+        else:
+          ris_C.aggiorna_colore(coloreN)
+        
+        on_out_r4 = r4.on_button(cordMouse_x, cordMouse_y)
+        if on_out_r4 == True:
+          ris_D.aggiorna_colore(coloreB)
+        else:
+          ris_D.aggiorna_colore(coloreN)
+        
+        #verifico se clicco un buttton
+        if event.type == pygame.MOUSEBUTTONDOWN:
+
+          stato_risp_A = r1.pressed_button(cordMouse_x, cordMouse_y)
+          if stato_risp_A == True:
+            controlla_risp(ris[0])
+          
+          stato_risp_B = r2.pressed_button(cordMouse_x, cordMouse_y)
+          if stato_risp_B == True:
+            controlla_risp(ris[1])
+
+          stato_risp_C = r3.pressed_button(cordMouse_x, cordMouse_y)
+          if stato_risp_C == True:
+            controlla_risp(ris[2])
+          
+          stato_risp_D = r4.pressed_button(cordMouse_x, cordMouse_y)
+          if stato_risp_D == True:
+            controlla_risp(ris[3])
+          
+          stato = btn_tornaIndietro4.pressed_button(cordMouse_x, cordMouse_y)
+          if stato == True:
             running = False
-
+            
+        if vg.flag_gameOver == True:
+          running = False
+          gameOver.main_gameOver()
       aggiorna()
 
 if __name__ == "__main__":

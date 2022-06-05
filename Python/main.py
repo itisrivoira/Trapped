@@ -40,36 +40,40 @@ def disegna_main():
   SCHERMO.blit(btn_gioca.getImmagine(), ( btn_gioca.getCord_x(), btn_gioca.getCord_y() ))
   SCHERMO.blit(btn_class.getImmagine(), ( btn_class.getCord_x(), btn_class.getCord_y() ))
 
-running = True
-while running:
+def main_home():
+  running = True
+  while running:
 
-  disegna_main()
-  
-  for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-      pygame.quit()
-      sys.exit()
+    disegna_main()
+    
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
 
-    #ottengo cordiante mouse
-    cordMouse_x, cordMouse_y = pygame.mouse.get_pos()
+      #ottengo cordiante mouse
+      cordMouse_x, cordMouse_y = pygame.mouse.get_pos()
 
-		#verifico se passo sopra ad un button
-    btn_impos.on_button(cordMouse_x, cordMouse_y, img_btn_impos, img_btn_impos_on)
-    btn_gioca.on_button(cordMouse_x, cordMouse_y, img_btn_gioca, img_btn_gioca_on)
-    btn_class.on_button(cordMouse_x, cordMouse_y, img_btn_class, img_btn_class_on)
-		
-		#verifico se clicco un buttton
-    if event.type == pygame.MOUSEBUTTONDOWN:
+      #verifico se passo sopra ad un button
+      btn_impos.on_button(cordMouse_x, cordMouse_y, img_btn_impos, img_btn_impos_on)
+      btn_gioca.on_button(cordMouse_x, cordMouse_y, img_btn_gioca, img_btn_gioca_on)
+      btn_class.on_button(cordMouse_x, cordMouse_y, img_btn_class, img_btn_class_on)
+      
+      #verifico se clicco un buttton
+      if event.type == pygame.MOUSEBUTTONDOWN:
 
-      stato_btnImp = btn_impos.pressed_button(cordMouse_x, cordMouse_y)
-      if stato_btnImp == True:
-        impostazioni.main_impostazioni()
+        stato_btnImp = btn_impos.pressed_button(cordMouse_x, cordMouse_y)
+        if stato_btnImp == True:
+          impostazioni.main_impostazioni()
 
-      stato_btnGio = btn_gioca.pressed_button(cordMouse_x, cordMouse_y)
-      if stato_btnGio == True:
-        gioco.main_gioco()
+        stato_btnGio = btn_gioca.pressed_button(cordMouse_x, cordMouse_y)
+        if stato_btnGio == True:
+          gioco.main_gioco()
 
-      stato_btnCla = btn_class.pressed_button(cordMouse_x, cordMouse_y)
-      if stato_btnCla == True:
-        classifica.main_classifica()
-  aggiorna()
+        stato_btnCla = btn_class.pressed_button(cordMouse_x, cordMouse_y)
+        if stato_btnCla == True:
+          classifica.main_classifica()
+    aggiorna()
+
+if __name__ == "__main__":
+	main_home()	

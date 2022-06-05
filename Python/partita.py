@@ -1,10 +1,11 @@
 from asyncio import proactor_events
 import pygame, sys
-import classi, provaDomande
+import classi, provaDomande, fine
 import varGlobali as vg
 pygame.init()
 
 MUL = 1.50
+global FPS
 
 ##settaggi #####################################################
 SCHERMO = pygame.display.set_mode((600,600))
@@ -17,9 +18,9 @@ img_cuore = pygame.image.load('./IMMAGINI/BUTTON/cuore.png')
 img_cuore_u = pygame.image.load('./IMMAGINI/BUTTON/cuore_usato.png')
 
 ##carico immagini ##############################################
-def carica_immagini():
+def carica_immagini(percorso):
   global img_classe
-  img_classe = pygame.image.load('./IMMAGINI/MAPPA/classe.png').convert()
+  img_classe = pygame.image.load('./IMMAGINI/MAPPA/'+percorso+'.png').convert()
   img_classe = pygame.transform.scale(img_classe, ( img_classe.get_width()*MUL, img_classe.get_height()*MUL ))
 
 ##programma ####################################################
@@ -111,83 +112,88 @@ def clicca(pulsante, flag):
     per.setDownPressed(flag)
     per.setIsWalking(flag)
 
-def muoviti(flag):
-  global flag_x, flag_y, dialogo1, dialogo2
-  per.setIsWalking(False)
+def muovi_alto():
+  per.setUpPressed(False)
+  print("alto")
 
-  if flag == True:
-    per.setIsWalking(True)
+def muovi_basso():
+  per.setDownPressed(False)
+  print("basso")
+
+def muovi_destra():
+  per.setRightPressed(False)
+  print("destra")
+
+def muovi_sinistra():
+  per.setLeftPressed(False)
+  print("sinistra")
+
+def level0():
+  global d0, d1, d2, d3, d4, d5, d6, dialogo1, dialogo2
+
+  if vg.flag_lvl0:
     dialogo1 = False
+    d0 = classi.Delay(1.5, muovi_sinistra)
+    d1 = classi.Delay(0.8, muovi_alto)
+    d2 = classi.Delay(1.1, muovi_destra)
+    d3 = classi.Delay(0.2, muovi_alto)
 
-    #da porta al centro stanza
-    if per.getCord_x() >= 280 and not flag_x:
-      per.setLeftPressed(True)
-    else:
-      per.setLeftPressed(False)
+    d4 = classi.Delay(0.25, muovi_destra)
+    d5 = classi.Delay(1, muovi_basso)
+    d6 = classi.Delay(0.2, muovi_destra)
 
-      #da centro stanza alla cattedra
-      if per.getCord_y() >= 130 and not flag_y:
-        per.setUpPressed(True)
-      else:
-        per.setUpPressed(False)
-        flag_x = True
+    vg.flag_lvl0 = False
 
-        #da cattedra va verso destra
-        if per.getCord_x() <= 470:
-          per.setRightPressed(True)
-        else:
-          per.setRightPressed(False)
-          flag_y = True
+  per.setIsWalking(True)
 
-          #da destra va verso il pc in alto
-          if per.getCord_y() >= 110:
-            per.setUpPressed(True)
-          else:
-            per.setUpPressed(False)
-            flag_x = True
-            per.setImmagine(pygame.image.load(per.animazione_up[0]))
-            dialogo2 = True
-            #return True
-  #else:
-   # return False
+  if not d0.iFinished:
+    per.setLeftPressed(True)
+    d0.Start()
 
-def muoviti2(flag):
-  global flag_x, flag_y
-  per.setIsWalking(False)
+  if d0.iFinished and not d1.iFinished:
+    per.setUpPressed(True)
+    d1.Start()
 
-  if flag == True:
-    per.setIsWalking(True)
+  if d0.iFinished and d1.iFinished and not d2.iFinished:
+    per.setRightPressed(True)
+    d2.Start()
 
-    #da pc va verso il basso
-    if per.getCord_y() <= 130:
-      per.setDownPressed(True)
-    else:
-      per.setDownPressed(False)
+  if d0.iFinished and d1.iFinished and d2.iFinished and not d3.iFinished:
+    per.setUpPressed(True)
+    d3.Start()
+    dialogo2 = True
 
-      #da pc va verso sinistra
-      if per.getCord_x() >= 170:
-        per.setLeftPressed(True)
-      else:
-        per.setLeftPressed(False)
-        flag_y = True
+  #da qui torna indietro
+  a = d0.iFinished and d1.iFinished and d2.iFinished and d3.iFinished and vg.flag_corretta
 
-        #verso armadio
-        if per.getCord_y() <= 10:
-          per.setUpPressed(True)
-        else:
-          per.setUpPressed(False)
-          per.setImmagine(pygame.image.load(per.animazione_up[0]))
+  if a and not d4.iFinished:
+    per.setRightPressed(True)
+    d4.Start()
+
+  if a and d4.iFinished and not d5.iFinished:
+    per.setDownPressed(True)
+    d5.Start()
+
+  if a and d4.iFinished and d5.iFinished and not d6.iFinished:
+    per.setRightPressed(True)
+    d6.Start()
+    vg.flag_muoviti = False
+    vg.lvl0= False
+    vg.flag_fine = True
+
+def ActualLevel():
+  if vg.lvl0:
+    level0()
 
 def main_partita():
   global clock, flag_x, flag_y, dialogo1, dialogo2
+
   running_partita = True
-  flag_muoviti = False
   flag_x, flag_y = False, False
-  flag_muoviti2 = False
   dialogo1 = True
   dialogo2 = False
 
-  carica_immagini()
+  carica_immagini("classe")
   inizializza()
 
   while running_partita:
@@ -203,26 +209,19 @@ def main_partita():
             running_partita = False
         
         if event.key == pygame.K_SPACE:
-            flag_muoviti = True
+            vg.flag_muoviti = True
         
         if event.key == pygame.K_g:
             provaDomande.main_domande()
             dialogo2 = False
 
-    muoviti(flag_muoviti)
-    if vg.flag_corretta == True:
-      flag_muoviti2 = True
-      per.setImmagine(pygame.image.load(per.animazione_up[0]))
-      muoviti2(flag_muoviti2)
-    
-    #flag_muoviti = False
-      
-    # flag_muoviti2 = True #modifico poi quando a finito enigma
-    
-    # if flag_muoviti2 == True:
-    #   per.setImmagine(pygame.image.load(per.animazione_up[0]))
-    #   muoviti2(flag_muoviti2)
-      
+    if vg.flag_muoviti:
+      ActualLevel()
+
+    if vg.flag_fine == True:
+      running_partita = False
+      fine.main_fine()
+
     per.update()
     aggiorna()
 

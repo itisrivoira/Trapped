@@ -28,6 +28,15 @@ img_d_12 = pygame.image.load('./IMMAGINI/PERSONAGGI/DONNA/donna_sinistra_3.png')
 
 character = 0
 
+flag_fine = False
 flag_corretta = False
+flag_muoviti = False
+flag_gameOver = False
+
+lvl0 = True
+flag_lvl0 = True
 
 vite = 3
+punti = 100
+
+FPS = 60

@@ -40,6 +40,9 @@ class Testo():
     self.lunT = self.surf_text.get_width()
     self.altT = self.surf_text.get_height()
 	
+  def aggiorna_colore(self, c):
+    self.__init__(self.getFont(), self.getSize(), self.getTesto(), c, self.getCord_x(), self.getCord_y())
+
   def setFont(self, f):
     self.font = f
 	
@@ -297,3 +300,52 @@ class Personaggio():
 
     self.setCord_x(self.getCord_x() + self.velX)
     self.setCord_y(self.getCord_y() + self.velY)
+    
+class Delay():
+  def __init__(self, sec, event):
+    self.__min = 0
+    self.__max = sec * vg.FPS
+    self.__increment = 1
+    self.__function = event
+    self.__flag = True
+    self.__times = 0
+    self.iFinished = False
+
+  # | Avvia il delay -> Poi si interromperà |
+  def Start(self):
+    if self.__flag:
+        self.__min += self.__increment
+
+        if int(self.__min) >= self.__max:
+            self.iFinished = True
+            self.__function()
+            self.__flag = False
+            return True
+
+    return False
+
+  # | Restarta il delay |
+  def ReStart(self):
+      if not self.__flag:
+          self.__min = 0
+          self.__flag = True
+          
+  def Stop(self):
+      if self.__flag:
+          self.__flag = False
+          self.__min = 0
+
+  # | Imposta il delay a infinito |
+  def Infinite(self):
+      self.ReStart()
+      self.Start()
+
+  def TotTimes(self, val):
+      if self.__times <= val:
+          self.ReStart()
+          self.Start()
+          self.__times += 1
+
+  # | Stampa lo stato attuale del delay |
+  def ActualState(self):
+      print("| Current Second: %d | Max Seconds: %d | Function: %s |" %(self.__min/vg.FPS, self.__max/vg.FPS, self.__function))
