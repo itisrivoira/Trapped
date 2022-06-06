@@ -49,8 +49,26 @@ body{
   font-family: "TRAPPED";
   justify-content: center;
   margin-top: 5%;
-  margin-bottom: 5%;
+
 }
+
+.gioca{
+	display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+  
+}
+
+.btngioca{
+ height: 80px;
+ width: 250px;
+ border-radius: 15px;
+ color: #200c64;
+ background-color: white;
+ font-family: "TRAPPED";
+ font-size: 40px;
+}
+
 
 .sinostra{
   display: flex;
