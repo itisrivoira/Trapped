@@ -51,7 +51,7 @@ def allinea(ogg, allOri):
 
 def disegna_domanda():
   global d, ris, ris_A, ris_B, ris_C, ris_D, r1, r2, r3, r4, giusta, sbagliata, cuore_1, cuore_2, cuore_3, btn_tornaIndietro4
-  d = domande.domande[1][0][0]
+  d = domande.domande[0][0][0]
   ris = [domande.domande[0][1][0], domande.domande[0][2][0], domande.domande[0][3][0], domande.domande[0][4][0]]
   random.shuffle(ris)
   
@@ -94,25 +94,25 @@ def disegna_main():
 
   blit_text(SCHERMO, d, (60, 100), font)
 
-  #stampo rispota A
+  #stampo risposta A
   pygame.draw.rect(SCHERMO, r1.colB, (r1.x-10, r1.y-10, 400, r1.h+20), 0, border_radius=10)
   pygame.draw.rect(SCHERMO, r1.c, (r1.x-10, r1.y-10, 400, r1.h+20), 5, border_radius=10)
   allinea(ris_A, True)
   SCHERMO.blit(ris_A.surf_text, ( ris_A.getCord_x(), ris_A.getCord_y() ))
 
-  #stampo rispota B
+  #stampo risposta B
   pygame.draw.rect(SCHERMO, r2.colB, (r2.x-10, r2.y-10, 400, r2.h+20), 0, border_radius=10)
   pygame.draw.rect(SCHERMO, r2.c, (r2.x-10, r2.y-10, 400, r2.h+20), 5, border_radius=10)
   allinea(ris_B, True)
   SCHERMO.blit(ris_B.surf_text, ( ris_B.getCord_x(), ris_B.getCord_y() ))
 
-  #stampo rispota C
+  #stampo risposta C
   pygame.draw.rect(SCHERMO, r3.colB, (r3.x-10, r3.y-10, 400, r3.h+20), 0, border_radius=10)
   pygame.draw.rect(SCHERMO, r3.c, (r3.x-10, r3.y-10, 400, r3.h+20), 5, border_radius=10)
   allinea(ris_C, True)
   SCHERMO.blit(ris_C.surf_text, ( ris_C.getCord_x(), ris_C.getCord_y() ))
 
-  #stampo rispota D
+  #stampo risposta D
   pygame.draw.rect(SCHERMO, r4.colB, (r4.x-10, r4.y-10, 400, r4.h+20), 0, border_radius=10)
   pygame.draw.rect(SCHERMO, r4.c, (r4.x-10, r4.y-10, 400, r4.h+20), 5, border_radius=10)
   allinea(ris_D, True)
